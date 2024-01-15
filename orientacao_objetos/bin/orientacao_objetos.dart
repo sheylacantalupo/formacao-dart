@@ -8,19 +8,16 @@ void main(List<String> arguments) {
   String cor = "Verde e amarela";
   String sabor = "Doce e cítrica";
   int diasDesdeColheita = 40;
-  bool isMadura = funcEstaMadura(diasDesdeColheita); 
-
-  print(isMadura);
-  print(funcEstaMadura(50));
-
-  mostarMadura("Uva", 40, cor: "Roxa");
-  mostarCor("Pêra", 12, cor: "Verde");
-  
-  int quantosDias = funcQuantosDiasMadura(diasDesdeColheita);
-  print(quantosDias);
-  
+  bool isMadura;
+   
+  Fruta fruta01 = Fruta(nome, peso, cor, sabor, diasDesdeColheita);  
+  Fruta fruta02 = Fruta("uva", 20, "roxo", "doce", 20);
+  print(fruta01.nome);
+  fruta01.estaMadura(30);
+  fruta02.estaMadura(60);
 
 }
+
 // Tipos de parâmetro
 // 1 - Posicionais obrigatórios
 // 2 - Nomeados opcionais
@@ -44,7 +41,6 @@ void mostarCor(String nome, int dias, {required String cor}){
   print("A $nome é $cor");
 }
 
-// exemplo função
 bool funcEstaMadura(int dias){
   if(dias >= 30){
     return true;
@@ -56,9 +52,22 @@ bool funcEstaMadura(int dias){
 int funcQuantosDiasMadura(int dias){
   int diasParaMadura = 30;
   int quantosDiasFaltam = diasParaMadura - dias;
-
   return quantosDiasFaltam;
-
 }
 
+class Fruta{
+  String nome;
+  double peso;
+  String cor;
+  String sabor;
+  int diasDesdeColheita;
+  bool? isMadura;
 
+  Fruta(this.nome, this.peso, this.cor, this.sabor, this.diasDesdeColheita, {this.isMadura});
+
+  estaMadura(int diasParaMadura){
+    isMadura = diasDesdeColheita >= diasParaMadura;
+    print(
+      "A sua $nome foi colhida a $diasDesdeColheita dias e precisa de $diasParaMadura para amadurecer. Ela está madura? $isMadura");
+  }
+}
