@@ -14,12 +14,19 @@ void main(List<String> arguments) {
   print(funcEstaMadura(50));
 
   mostarMadura("Uva", 40, cor: "Roxa");
+  mostarCor("Pêra", 12, cor: "Verde");
+  
+  int quantosDias = funcQuantosDiasMadura(diasDesdeColheita);
+  print(quantosDias);
+  
 
 }
 // Tipos de parâmetro
-// Posicionais obrigatórios
-// Nomeados opcionais
-// Parâmetros com padrão
+// 1 - Posicionais obrigatórios
+// 2 - Nomeados opcionais
+// 3 - Parâmetros com padrão 
+// 4 - Modificador "required" - não corre o risco de não receber as informações
+// 3 e 4 juntos entram em conflito
 void mostarMadura(String nome, int dias, {String? cor, String textura = "sem textura"}){
   if (dias >= 30){
     print("A $nome está madura");
@@ -33,8 +40,9 @@ void mostarMadura(String nome, int dias, {String? cor, String textura = "sem tex
 
 }
 
-
-
+void mostarCor(String nome, int dias, {required String cor}){
+  print("A $nome é $cor");
+}
 
 // exemplo função
 bool funcEstaMadura(int dias){
@@ -43,6 +51,13 @@ bool funcEstaMadura(int dias){
   }else {
     return false;
   }
+}
+
+int funcQuantosDiasMadura(int dias){
+  int diasParaMadura = 30;
+  int quantosDiasFaltam = diasParaMadura - dias;
+
+  return quantosDiasFaltam;
 
 }
 
