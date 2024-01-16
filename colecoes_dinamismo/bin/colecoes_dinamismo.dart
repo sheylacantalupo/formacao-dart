@@ -11,10 +11,18 @@ void main() {
   registrosVisitados = registrarDestinos("Paris", registrosVisitados);
   print(registrosVisitados);
 
+  Map<String,double> registarPrecos = {};
+  registarPrecos["São Paulo"] = 1200;
+  registarPrecos["Paris"] = 7200;
+  registarPrecos["Recife"] = 1220;
+  print(registarPrecos);
+  registarPrecos.remove("Recife");
+  print(registarPrecos);
+  print(registarPrecos["São Paulo"]);
+
 }
 
 Set<String> registrarDestinos(String destino,Set<String> banco){
-  
   banco.add(destino);
   return banco;
 }
