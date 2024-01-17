@@ -1,10 +1,34 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'controllers/bank_controller.dart';
 import 'exceptions/bank_controller_exceptions.dart';
 import 'models/account.dart';
 
+// testingNullSafety
+void testingNullSafety(){
+  // se eu não inicializo, automaticamente é nulo
+  Account? myAccount;
+
+  Random rng = Random();
+  int randomNumber = rng.nextInt(10);
+  if(randomNumber <=5){
+    myAccount = Account(name: "Sheyla", balance: 200, isAuthenticated: true);
+  }
+  print(myAccount.runtimeType);
+  //print(myAccount.balance);
+  //print(myAccount!.balance);
+  if (myAccount != null){
+    print(myAccount.balance);
+  }else{
+    print("Conta nula");
+  }
+
+  //print(myAccount != null? myAccount.balance : "Conta nula");
+}
 void main() {
+
+  testingNullSafety();
   // Criando o banco
   BankController bankController = BankController();
   //Account testAcount = Account(name: "", balance: 200, isAuthenticated: true); teste assert
