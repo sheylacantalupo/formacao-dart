@@ -8,6 +8,14 @@ void main() async {
   var a = true;
   String usuario = '';
 
+  var myStream = BotClock().botStream(1,10);
+  var subscriber = myStream.listen((event) {
+    print("      IuBot is activated for $event seconds");
+  }, onDone: () {
+    print("IuBot is finishing its work, ask the last question!");
+    a = false;
+  },);
+
   print('-- Iniciando o IuBOT, aguarde..--');
   // acessando o método clock da classe Botclock
   await BotClock().clock(2);
